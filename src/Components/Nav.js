@@ -5,6 +5,9 @@ import CartContext from "../context/cart/CartContext";
 const Nav = () => {
   const { cartItems, showHideCart } = useContext(CartContext);
 
+  let total = cartItems&&cartItems?.reduce(function (previousValue, currentValue) {
+    return previousValue + currentValue.quant ;
+  }, 0);
   return (
     <nav>
       <div className='nav__left'>Store</div>
@@ -23,7 +26,7 @@ const Nav = () => {
           />
           {cartItems.length > 0 && (
             <div className='item__count'>
-              <span>{cartItems.length}</span>
+              <span>{total}</span>
             </div>
           )}
         </div>

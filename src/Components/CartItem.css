@@ -33,3 +33,30 @@ li img {
 .CartItem__button:active {
   outline: none;
 }
+.add-minus-quantity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.add-minus-quantity input {
+  width: 2rem;
+  height: 3rem;
+  border: 0.141rem solid var(--primary-color);
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--primary-color);
+  margin: 0 1rem;
+  border-radius: 0.5rem;
+  outline: none;
+  background-color: transparent;
+}
+
+.add-minus-quantity input:focus {
+  outline: none;
+}

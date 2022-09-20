@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import CartContext from "./CartContext";
 import CartReducer from "./CartReducer";
-import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM } from "../Types";
+import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM , INCREMENT, DECREMENT} from "../Types";
 
 const CartState = ({ children }) => {
   const initalState = {
@@ -22,7 +22,12 @@ const CartState = ({ children }) => {
   const removeItem = (id) => {
     dispatch({ type: REMOVE_ITEM, payload: id });
   };
-
+  const increament = (id)=>{
+     dispatch({type: INCREMENT, payload: id});
+  }
+  const decrement = (id)=>{
+    dispatch({type: DECREMENT, payload:id})
+  }
   return (
     // The Provider component accepts a value prop to be passed to consuming components that are descendants of this Provider.
     <CartContext.Provider
@@ -32,6 +37,8 @@ const CartState = ({ children }) => {
         addToCart, 
         showHideCart,
         removeItem,
+        increament,
+        decrement
       }}
     >
       {children}

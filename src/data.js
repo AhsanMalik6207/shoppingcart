@@ -8,6 +8,7 @@ const products = [
     price: 89.99,
     rating: 4.5,
     numReviews: 12,
+    quanity:1,
   },
   {
     _id: "2",
@@ -18,6 +19,7 @@ const products = [
     price: 599.99,
     rating: 4.0,
     numReviews: 8,
+    quanity:1,
   },
   {
     _id: "3",
@@ -28,6 +30,8 @@ const products = [
     price: 929.99,
     rating: 3,
     numReviews: 12,
+    quanity:1,
+
   },
   {
     _id: "4",
@@ -38,6 +42,8 @@ const products = [
     price: 399.99,
     rating: 5,
     numReviews: 12,
+    quanity:1,
+
   },
   {
     _id: "5",
@@ -48,6 +54,8 @@ const products = [
     price: 49.99,
     rating: 3.5,
     numReviews: 10,
+    quanity:1,
+
   },
   {
     _id: "6",
@@ -58,128 +66,160 @@ const products = [
     price: 29.99,
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
   },
   {
-    id: "7",
+    _id: "7",
     name: "Luxury Cat",
     image: "http://placekitten.com/g/600/300",
     price: 1000,
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
   },
 
   {
-    id: "8",
+    _id: "8",
     name: "Other Cat",
     price: 1200,
     image: "http://placekitten.com/g/600/300",
     rating: 5,
-    numReviews: 18,  },
+    numReviews: 18, 
+    quanity:1,
+  },
   {
-    id: "9",
+    _id: "9",
     name: "Samsung S21",
     price: 2500,
     image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 18,
+    quanity:1,
+
   },
   {
-    id: "10",
+    _id: "10",
     name: "Samsung M21",
     price: 2300,
     image: "https://images.pexels.com/photos/47261/pexels-photo-47261.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 16,
+    quanity:1,
+
   },
   {
-    id: "11",
+    _id: "11",
     name: "Redmi 9",
     price: 3500,
     image: "https://images-na.ssl-images-amazon.com/images/I/71A9Vo1BatL._SL1500_.jpg",
     rating: 4,
     numReviews: 20,
+    quanity:1,
+
   },
   {
-    id: "12",
+    _id: "12",
     name: "Iphone 12",
     price: 90500,
     image: "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
     rating: 4,
     numReviews: 22,
+    quanity:1,
+
   },
   {
-    id: "13",
+    _id: "13",
     name: "Samsung S21",
     price: 2500,
     image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 21,
+    quanity:1,
+
   },
   {
-    id: "14",
+    _id: "14",
     name: "Redmi 9",
     price: 3500,
     image: "https://images-na.ssl-images-amazon.com/images/I/71A9Vo1BatL._SL1500_.jpg",
     rating: 4,
     numReviews: 23,
+    quanity:1,
+
   },
   {
-    id: "15",
+    _id: "15",
     name: "Samsung S21",
     price: 2500,
     image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
   },
   {
-    id: "16",
+    _id: "16",
     name: "Iphone 12",
     price: 90500,
     image: "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
     rating: 4,
     numReviews: 30,
+    quanity:1,
+
   },
   {
-    id: "17",
+    _id: "17",
     name: "Samsung S21",
     price: 2500,
     image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
   },
   {
-    id: "18",
+    _id: "18",
     name: "Samsung S21",
     description: "black in color",
     price: 2500,
     image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
   },
   {
-    id: "19",
+    _id: "19",
     name: "Samsung S21",
     price: 2500,
     image: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
   },
   {
-    id: "20",
+    _id: "20",
     name: "Samsung S21",
     price: "2500",
     image: "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
     rating: 4,
     numReviews: 12,
+    quanity:1,
+
     
   },
   {
-    id: "21",
+    _id: "21",
     name: "Samsung S21",
     price: "2500",
     image: "https://images-na.ssl-images-amazon.com/images/I/71hIfcIPyxS._SL1500_.jpg",
     rating: 4,
     numReviews: 23,
+    quanity:1,
+
     
   },
 ];
