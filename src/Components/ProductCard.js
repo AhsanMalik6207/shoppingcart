@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import "./ProductCard.css";
 import formatCurrency from "format-currency";
-import Rating from "./Rating";
+import Rating from './Rating'
 import CartContext from "../context/cart/CartContext";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, id }) => {
 
   const { addToCart } = useContext(CartContext);
   let opts = { format: "%s%v", symbol: "€" };
@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className='ProductCard__Rateing'>
           <Rating
-            value={product.rating}
+            id={id}
             text={`${product.numReviews} reviews`}
           />
         </div>

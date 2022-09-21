@@ -1,4 +1,4 @@
-import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM,INCREMENT, DECREMENT } from "../Types";
+import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM, INCREMENT, DECREMENT, CLEAR, RATING } from "../Types";
 
 const CartReducer = (state, action) => {
   switch (action.type) {
@@ -10,77 +10,112 @@ const CartReducer = (state, action) => {
     }
     case ADD_TO_CART: {
       let item = [...state.cartItems];
-      let cartIndex = item.findIndex((item)=>+item._id=== +action.payload._id)
-      if(cartIndex<0){
+      let cartIndex = item.findIndex((item) => +item._id === +action.payload._id)
+      if (cartIndex < 0) {
         item.push({
           ...action.payload,
-          quant:1
+          quant: 1
         })
-      }else{
+      } else {
         let findProduct = {
           ...item[cartIndex]
         }
         findProduct.quant++;
-        item[cartIndex]=findProduct;
-        
+        item[cartIndex] = findProduct;
+
       }
 
       return {
         ...state,
         // payload is information about the action & is the actual data that is transmitted over the network.
-        cartItems:item,
+        cartItems: item,
       };
-    
+
     }
     case REMOVE_ITEM: {
-      console.log(action.payload._id,"action.payload._id")
+      console.log(action.payload._id, "action.payload._id")
       let item = [...state.cartItems];
-      let cartIndex = item.findIndex((item)=> +item._id==action.payload._id)
-      console.log(item,cartIndex,"cartIndex")
-        let findProduct = {
-          ...item[cartIndex]
-        }
-        findProduct.quant--;
-        item.splice(cartIndex,1)        
+      let cartIndex = item.findIndex((item) => +item._id == action.payload._id)
+      console.log(item, cartIndex, "cartIndex")
+      let findProduct = {
+        ...item[cartIndex]
+      }
+      findProduct.quant--;
+      item.splice(cartIndex, 1)
       return {
         ...state,
         cartItems: item
       }
     }
-    case INCREMENT:{
+    case INCREMENT: {
       // console.log(action.payload._id,"action.payload==>")
       let item = [...state.cartItems];
-      let cartIndex = item.findIndex((item)=> +item._id==action.payload._id)
-      console.log(item,cartIndex,"cartIndex")
-        let findProduct = {
-          ...item[cartIndex]
-        }
-        findProduct.quant++;
-        item[cartIndex]=findProduct;
+      let cartIndex = item.findIndex((item) => +item._id == action.payload._id)
+      console.log(item, cartIndex, "cartIndex")
+      let findProduct = {
+        ...item[cartIndex]
+      }
+      findProduct.quant++;
+      item[cartIndex] = findProduct;
 
-      return{
+      return {
         ...state,
-         cartItems:item,
+        cartItems: item,
       }
-        // let item =  state.cartItems?.find((item)=> +item.id===+action.payload)
+
+    }
+    case DECREMENT: {
+      // console.log(action.payload._id,"action.payload==>")
+      let item = [...state.cartItems];
+      let cartIndex = item.findIndex((item) => item._id == action.payload._id)
+      console.log(item, cartIndex, "cartIndex")
+      let findProduct = {
+        ...item[cartIndex]
       }
-      case DECREMENT:{
-        // console.log(action.payload._id,"action.payload==>")
-        let item = [...state.cartItems];
-        let cartIndex = item.findIndex((item)=> +item._id==action.payload._id)
-        console.log(item,cartIndex,"cartIndex")
-          let findProduct = {
-            ...item[cartIndex]
-          }
-          findProduct.quant--;
-          item[cartIndex]=findProduct;
-  
-        return{
-          ...state,
-           cartItems:item,
-        }
-          // let item =  state.cartItems?.find((item)=> +item.id===+action.payload)
-        }
+      if (findProduct.quant > 0) {
+        findProduct.quant--;
+      }
+      item[cartIndex] = findProduct;
+
+      return {
+        ...state,
+        cartItems: item,
+      }
+      // let item =  state.cartItems?.find((item)=> +item.id===+action.payload)
+    }
+    case CLEAR: {
+      return {
+        ...state,
+        cartItems: [],
+      }
+    }
+    case RATING: {
+      let item = [...state.productItems];
+      console.log(item, "item-------test")
+      console.log(action.payload.id, "new ---- >", action.payload.value)
+      let productRating = item[0].find((product) => (product._id == action.payload.id))
+      console.log(productRating, "productRating");
+      // const {1:a,2:b,3:c,4:d,5:f} = productRating.star;
+      console.log(productRating.star[3]+1, "key")
+      console.log(productRating, "productRating");
+
+      // console.log(productRating.star,"productRading star");
+      
+      // let findProduct = {
+          
+      //   ...item[productRating]
+      // }
+      // findProduct.rating++;
+      // item[productRating]=findProduct;
+
+
+
+      return {
+        ...state,
+        // payload is information about the action & is the actual data that is transmitted over the network.
+        productItems: item,
+      };
+    }
     default:
       return state;
   }

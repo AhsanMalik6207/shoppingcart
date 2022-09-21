@@ -12,7 +12,8 @@ const CartItem = ({ item }) => {
     <li className='CartItem__item'>
       <img src={item.image} alt='' />
       <div>
-        {item.name}{item.quant}  {formatCurrency(`${item.price}`, opts)}
+      {item.name}
+         {formatCurrency(`${item.price* item.quant}`, opts)}
       </div>
      <div className="add-minus-quantity">
           <i className="fas fa-minus minus" onClick={()=>decrement(item) } ></i>
@@ -22,6 +23,7 @@ const CartItem = ({ item }) => {
       <button className='CartItem__button' onClick={() => removeItem(item)}>
         Remove
       </button>
+      
     </li>
   );
 };

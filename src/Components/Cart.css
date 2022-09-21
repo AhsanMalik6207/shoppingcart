@@ -29,3 +29,14 @@
 .fa-times-circle:hover {
   transform: rotate(90deg);
 }
+.Clear__button{
+  height: 3rem;
+  width: 6rem;
+  border: 3px solid grey;
+  border-radius: 1rem;
+  margin-left: 12rem;
+  background-color: rgb(209, 61, 61);
+}
+.Clear__button:hover{
+  background-color: rgb(197, 5, 5);
+}
