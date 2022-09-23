@@ -95,25 +95,14 @@ const CartReducer = (state, action) => {
       console.log(action.payload.id, "new ---- >", action.payload.value)
       let productRating = item[0].find((product) => (product._id == action.payload.id))
       console.log(productRating, "productRating");
-      // const {1:a,2:b,3:c,4:d,5:f} = productRating.star;
-      console.log(productRating.star[3]+1, "key")
-      console.log(productRating, "productRating");
-
-      // console.log(productRating.star,"productRading star");
-      
-      // let findProduct = {
-          
-      //   ...item[productRating]
-      // }
-      // findProduct.rating++;
-      // item[productRating]=findProduct;
-
-
+      // console.log(productRating.rating=action.payload.value, "setValue")
+      let data=productRating.rating=action.payload.value
+ 
 
       return {
         ...state,
         // payload is information about the action & is the actual data that is transmitted over the network.
-        productItems: item,
+        productItems: item,data,
       };
     }
     default:

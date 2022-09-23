@@ -13,11 +13,11 @@ function RATING({ id }) {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0)
-  useEffect(() => {
-    localStorage.setItem("rating", JSON.stringify(stars));
-  }, [stars])
+  // useEffect(() => {
+  //   localStorage.setItem("rating", JSON.stringify(stars));
+  // }, ['stars'])
   const handleClick = value => {
-    console.log("value value", value);
+    // console.log("value value", value);
     setCurrentValue(value);
     console.log("....", id, value )
     rating(id, value)

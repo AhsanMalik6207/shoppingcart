@@ -13,7 +13,7 @@ const Cart = () => {
   useEffect(()=>{
     localStorage.setItem("cart",JSON.stringify(cartItems));
   },[cartItems])
-  console.log({cartItems})
+  console.log(cartItems)
   
   return (
     <>

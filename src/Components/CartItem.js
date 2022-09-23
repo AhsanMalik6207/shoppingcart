@@ -3,8 +3,7 @@ import "./CartItem.css";
 import CartContext from "../context/cart/CartContext";
 import formatCurrency from "format-currency";
 
-
-const CartItem = ({ item }) => {
+const CartItem = ({ item,id }) => {
   const { removeItem,increament,decrement } = useContext(CartContext);
   // console.log(item,"items")
   let opts = { format: "%s%v", symbol: "€" };

@@ -9,7 +9,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
   },
   {
     _id: "2",
@@ -21,7 +20,6 @@ const products = [
     rating: 0,
     numReviews: 8,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
   },
   {
     _id: "3",
@@ -33,7 +31,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -46,7 +43,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -59,7 +55,6 @@ const products = [
     rating: 0,
     numReviews: 10,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -72,7 +67,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -83,7 +77,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
   },
 
   {
@@ -94,7 +87,6 @@ const products = [
     rating: 0,
     numReviews: 18, 
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
   },
   {
     _id: "9",
@@ -104,7 +96,6 @@ const products = [
     rating: 0,
     numReviews: 18,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -115,7 +106,6 @@ const products = [
     rating: 0,
     numReviews: 16,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -126,7 +116,6 @@ const products = [
     rating: 0,
     numReviews: 20,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -137,7 +126,6 @@ const products = [
     rating: 0,
     numReviews: 22,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -148,7 +136,6 @@ const products = [
     rating: 0,
     numReviews: 21,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -159,7 +146,6 @@ const products = [
     rating: 0,
     numReviews: 23,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -170,7 +156,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -181,7 +166,6 @@ const products = [
     rating: 0,
     numReviews: 30,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -192,7 +176,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -204,7 +187,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -215,7 +197,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
   },
   {
@@ -226,7 +207,6 @@ const products = [
     rating: 0,
     numReviews: 12,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
     
   },
@@ -238,7 +218,6 @@ const products = [
     rating: 0,
     numReviews: 23,
     quanity:1,
-    star:{1:0,2:0,3:0,4:0,5:0}
 
     
   },

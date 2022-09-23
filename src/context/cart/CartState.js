@@ -4,12 +4,11 @@ import CartReducer from "./CartReducer";
 import products from "../../data";
 import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM, INCREMENT, DECREMENT, CLEAR, RATING } from "../Types";
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart" || '[]'));
-console.log(cartFromLocalStorage);
-
+// const ProductFromLocalStorage= JSON.parse(localStorage.getItem("products"||'[]'))
 const CartState = ({ children }) => {
   const initalState = {
     showCart: false,
-    cartItems: [...cartFromLocalStorage],
+    cartItems: cartFromLocalStorage === null ? [] : [...cartFromLocalStorage],
     showProduct: false,
     productItems:[products]
   };

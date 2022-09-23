@@ -24,7 +24,7 @@ const Nav = () => {
             aria-hidden='true'
             onClick={showHideCart}
           />
-          {cartItems.length > 0 && (
+          {cartItems.length >= 0 && (
             <div className='item__count'>
               <span>{total}</span>
             </div>

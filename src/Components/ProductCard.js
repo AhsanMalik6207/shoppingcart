@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import "./ProductCard.css";
 import formatCurrency from "format-currency";
-import Rating from './Rating'
+// import Rating from './Rating'
+import Rating1 from "./Rating1";
 import CartContext from "../context/cart/CartContext";
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 const ProductCard = ({ product, id }) => {
 
   const { addToCart } = useContext(CartContext);
@@ -17,10 +19,12 @@ const ProductCard = ({ product, id }) => {
           <h5>{formatCurrency(`${product.price}`, opts)}</h5>
         </div>
         <div className='ProductCard__Rateing'>
-          <Rating
+        <Rating1 id={id} filledIcon={FavoriteIcon} emptyIcon={FavoriteBorderIcon} precision={0.25}  />
+          <span className="rating">{product.rating}</span>
+          {/* <Rating
             id={id}
             text={`${product.numReviews} reviews`}
-          />
+          /> */}
         </div>
         <button
           className='ProductCard__button'
