@@ -1,9 +1,11 @@
-import React, { useState, useRef,useContext,useEffect } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import Box from '@mui/material/Box';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import CartContext from "../context/cart/CartContext";
-
+// import CartContext from "../store/cart/store";
+import { rating } from '../store/cart/actions';
+import { useDispatch } from 'react-redux';
+import zIndex from '@mui/material/styles/zIndex';
 const Rating1 = ({
   precision = 1,
   totalStars = 5,
@@ -11,8 +13,8 @@ const Rating1 = ({
   filledIcon = StarIcon,
   id
 }) => {
-    const { rating } = useContext(CartContext);
-
+    // const { rating } = useContext(CartContext);
+  const dispatch= useDispatch()
   const [activeStar, setActiveStar] = useState(-1);
   const [hoverActiveStar, setHoverActiveStar] = useState(-1);
   const [isHovered, setIsHovered] = useState(false);
@@ -32,7 +34,7 @@ const Rating1 = ({
     setIsHovered(false);
     setActiveStar(calculateRating(e));
     console.log("....", id,(calculateRating(e) ) )
-    rating(id,(calculateRating(e) ))
+    dispatch(rating(id,(calculateRating(e) )))
   };
 
   const handleMouseMove = (e) => {
@@ -53,7 +55,8 @@ const Rating1 = ({
         display: 'inline-flex',
         position: 'relative',
         cursor: 'pointer',
-        textAlign: 'left'
+        textAlign: 'left',
+        // zIndex:-1
       }}
       onClick={handleClick}
       onMouseMove={handleMouseMove}
@@ -74,8 +77,9 @@ const Rating1 = ({
         return (
           <Box
             position={'relative'}
+            
             sx={{
-              cursor: 'pointer'
+              cursor: 'pointer',zIndex:-1
             }}
             key={index}
           >
@@ -83,7 +87,7 @@ const Rating1 = ({
               sx={{
                 width: showRatingWithPrecision ? `${(activeState % 1) * 100}%` : '0%',
                 overflow: 'hidden',
-                position: 'absolute'
+                position: 'absolute',
               }}
             >
               <FilledIcon />

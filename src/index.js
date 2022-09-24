@@ -3,13 +3,17 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import CartState from './context/cart/CartState'
+import {Provider} from "react-redux";
+import store from "./store/cart/index";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CartState>
+      <Provider store={store}>
+      <BrowserRouter>
       <App />
-    </CartState>
+      </BrowserRouter>
+      </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

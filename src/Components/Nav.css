@@ -43,7 +43,13 @@ input:active {
 }
 
 .nav__right {
+  display: flex;
+  justify-content: space-between;
   flex: 1;
+}
+.nav_link{
+    display: flex;
+    margin-left: 2rem;
 }
 
 .cart__icon {

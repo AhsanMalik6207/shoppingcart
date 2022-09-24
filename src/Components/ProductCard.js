@@ -1,14 +1,15 @@
-import { useContext } from "react";
 import "./ProductCard.css";
 import formatCurrency from "format-currency";
 // import Rating from './Rating'
 import Rating1 from "./Rating1";
-import CartContext from "../context/cart/CartContext";
+// import CartContext from "../store/cart/store";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { addToCart } from "../store/cart/actions";
+import { useDispatch } from "react-redux";
 const ProductCard = ({ product, id }) => {
-
-  const { addToCart } = useContext(CartContext);
+     const dispatch = useDispatch()
+  // const { addToCart } = useContext(CartContext);
   let opts = { format: "%s%v", symbol: "€" };
   return (
     <div className='productCard__wrapper'>
@@ -28,7 +29,7 @@ const ProductCard = ({ product, id }) => {
         </div>
         <button
           className='ProductCard__button'
-          onClick={() => addToCart(product)}
+          onClick={() =>dispatch(addToCart(product)) }
         >
           Add to basket
         </button>
