@@ -1,7 +1,7 @@
 import Cart from "./Components/Cart";
 import Nav from "./Components/Nav";
 import HomeScreen from "./screens/HomeScreen";
-import Register1 from "./Components/Register";
+import Register from "./Components/Register";
 import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
 import Login from "./Components/Login";
 function App() {
@@ -16,8 +16,8 @@ function App() {
    
        <Routes>
           <Route path="/" element={<HomeScreen /> }></Route>
-           <Route path="/login" element={<Login/>}></Route>
-           <Route path="/register" element={<Register1/>}></Route>
+           {/* <Route path="/login" element={<Login/>}></Route> */}
+           <Route path="/register" element={<Register/>}></Route>
 
           <Route></Route>
        </Routes>

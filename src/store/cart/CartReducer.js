@@ -1,11 +1,12 @@
-import { SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM, INCREMENT, DECREMENT, CLEAR, RATING } from "../Types";
+import {SHOW_HIDE_CART, ADD_TO_CART, REMOVE_ITEM, INCREMENT, DECREMENT, CLEAR, RATING } from "../Types";
 import products from "../../data";
 const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart" || '[]'));
 
   const initalState = {
     showCart: false,
     cartItems: cartFromLocalStorage === null? []:[...cartFromLocalStorage],
-    productItems:[products]
+    productItems:[products],
+    
   }
 const CartReducer = (state=initalState, action) => {
   switch (action.type) {
@@ -111,6 +112,17 @@ const CartReducer = (state=initalState, action) => {
         productItems: item,data,
       };
     }
+  //   case USER_REGISTER_REQUEST: return {
+  //     loading: true
+  // }
+  // case USER_REGISTER_SUCCESS: return {
+  //     loading: false,
+  //     success: true
+  // }
+  // case USER_REGISTER_FAILED: return {
+  //     loading: false,
+  //     error: action.payload
+  // }
     default:
       return state;
   }

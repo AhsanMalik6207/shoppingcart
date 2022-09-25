@@ -5,11 +5,6 @@ export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
 export const CLEAR = "CLEAR";
 export const RATING ="RATING";
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-export const LOGOUT = "LOGOUT";
-
-export const SET_MESSAGE = "SET_MESSAGE";
-export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const USER_REGISTER_REQUEST = "USER_REGISTER_REQUEST";
+export const USER_REGISTER_SUCCESS = "USER_REGISTER_SUCCESS";
+export const USER_REGISTER_FAILED = "USER_REGISTER_FAILED";

@@ -3,10 +3,12 @@ import { useContext } from "react";
 // import CartContext from "../store/cart/store";
 import { showHideCart } from "../store/cart/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 const Nav = () => {
   // const { cartItems, showHideCart } = useContext(CartContext);
   const dispatch = useDispatch()
-
+  // const history = useHistory();
   const cartItems = useSelector((state) => state.CartReducer)
   const showCart = useSelector((state) => state.CartReducer.showCart)
   console.log(showCart,"showCart.....")
@@ -14,6 +16,10 @@ const Nav = () => {
   let total = cartItems&&cartItems.cartItems?.reduce(function (previousValue, currentValue) {
     return previousValue + currentValue.quant ;
   }, 0);
+//   function logout() {
+//     localStorage.clear();
+//     history.push('/login')
+// }
   return (
     <nav>
       <div className='nav__left'>Shopping Cart With Redux</div>
