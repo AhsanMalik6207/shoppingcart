@@ -1,161 +1,71 @@
-import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
-import './register.css'
-import { register } from "../store/cart/Authaction";
+import React from 'react'
+import axios from "axios";
+import { Grid, Paper, Avatar, Typography, TextField, Button, makeStyles, Box } from '@material-ui/core'
+import CreateIcon from '@mui/icons-material/Create';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { useSelector } from 'react-redux';
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-
-const vusername = (value) => {
-  if (value.length < 3 || value.length > 20) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be between 3 and 20 characters.
-      </div>
-    );
-  }
-};
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
-
+const useStyles = makeStyles((theme) => ({
+    paperStyle: { marginTop: 115, padding: 20, height: '70vh', width: 280, margin: "20px auto" },
+    headerStyle: { margin: 0 },
+    avatarStyle: { backgroundColor: '#1bbd7e', marginBottom: "21px" },
+    btnstyle: { margin: '8px 0' },
+    spanstyle: { color: "red", marginTop: "10px" }
+}));
 const Register = () => {
-  const form = useRef();
-  const checkBtn = useRef();
-
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [successful, setSuccessful] = useState(false);
-
-  const { message } = useSelector(state => state.message);
-  const dispatch = useDispatch();
-
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    setSuccessful(false);
-
-    form.current.validateAll();
-
-    if (checkBtn.current.context._errors.length === 0) {
-      dispatch(register(username, email, password))
-        .then(() => {
-          setSuccessful(true);
-        })
-        .catch(() => {
-          setSuccessful(false);
-        });
-    }
-  };
-
-  return (
-    <div>
-
-    <div className="row justify-content-center mt-5">
-    <div className="col-md-5 mt-5 text-left">
-       <h2 className="text-center m-2" style={{fontSize:"35px"}}>Register Form </h2>
-        
-        <Form onSubmit={handleRegister} ref={form}>
-          {!successful && (
-            <div>
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="username"
-                  value={username}
-                  onChange={onChangeUsername}
-                  validations={[required, vusername]}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={onChangeEmail}
-                  validations={[required, validEmail]}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <Input
-                  type="password"
-                  className="form-control"
-                  name="password"
-                  value={password}
-                  onChange={onChangePassword}
-                  validations={[required, vpassword]}
-                />
-              </div>
-
-              <div className="mt-5">
-                <button className="btn btn-primary btn-block">Sign Up</button>
-              </div>
-            </div>
-          )}
-
-          {message && (
-            <div className="form-group">
-              <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
-      </div>
-      </div>
-    </div>
-  );
-};
-
+    const user = useSelector((state) => state.user.currentUser);
+    const admin = useSelector((state) => state.admin.currentAdmin);
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    const classes = useStyles();
+    const history = useHistory();
+    useEffect(() => {
+        if (admin) {
+            history.push('/admindashboard')
+        }
+        if (user) {
+            history.push('/')
+        }
+    });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError(false);
+        try {
+            const result = await axios.post(`v1/client/register`, {
+                name,
+                email,
+                password,
+            });
+            if (result.data) {
+                alert("User Created Successfully!");
+                history.push('/login')
+            }
+        } catch (err) {
+            setError(true);
+        }
+    };
+    return (
+        <Grid>
+            <Paper elevation={20} className={classes.paperStyle}>
+                <Grid align='center'>
+                    <Avatar className={classes.avatarStyle}>
+                        <CreateIcon />
+                    </Avatar>
+                    <h2 className={classes.headerStyle}>Sign up</h2>
+                    <Typography variant='caption' gutterBottom>Please fill this form to create an account!</Typography>
+                </Grid>
+                <form onSubmit={handleSubmit}>
+                    <TextField label='Name' placeholder="Enter your name" onChange={(e) => setName(e.target.value)} fullWidth />
+                    <TextField label='Email' placeholder="Enter your email" type='email' onChange={(e) => setEmail(e.target.value)} fullWidth required />
+                    <TextField label='Password' placeholder="Enter your password" type='password' onChange={(e) => setPassword(e.target.value)} fullWidth required />
+                    <Button type='submit' color='primary' variant="contained" className={classes.btnstyle} fullWidth>Sign up</Button>
+                </form>
+                {error && <Box component="span" className={classes.spanstyle}>Something went wrong! Make sure Password should be atleast 8 characters long.</Box>}
+            </Paper>
+        </Grid>
+    )
+}
 export default Register;

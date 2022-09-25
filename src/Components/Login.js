@@ -1,115 +1,72 @@
-import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from 'react-router-dom';
-import Form from "react-validation/build/form";
-import './login.css'
-import Input from "react-validation/build/input";
-// import { login } from "../store/cart/Authaction";
+import React from 'react'
+import { Grid, Paper, Avatar, TextField, Button, Typography, makeStyles, Box } from '@material-ui/core'
+import LoginIcon from '@mui/icons-material/Login';
+import { Link, useHistory } from 'react-router-dom';
+import { useState ,useEffect} from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginFailure, loginStart, loginSuccess } from "../redux/userRedux";
 
-const required = (value) => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
-
-const Login = (props) => {
-    // let navigate = useNavigate();
-
-    const form = useRef();
-    // const checkBtn = useRef();
-
-    const [username, setUsername] = useState("");
+const useStyles = makeStyles((theme) => ({
+    paperStyle: { marginTop: 115, padding: 20, height: '70vh', width: 280, margin: "20px auto", },
+    avatarStyle: { backgroundColor: '#1bbd7e' },
+    btnstyle: { margin: '8px 0' },
+    spanstyle: { color: "red", marginTop: "10px" }
+}));
+const Login = () => {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-
-    // const { isLoggedIn } = useSelector(state => state.auth);
-    const { message } = useSelector(state => state.message);
-
+    const classes = useStyles();
     const dispatch = useDispatch();
-
-    const onChangeUsername = (e) => {
-        const username = e.target.value;
-        setUsername(username);
-    };
-
-    const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
-    const handleLogin = (e) => {
+    const history= useHistory();
+    const { isFetching, error } = useSelector((state) => state.user);
+    const user = useSelector((state) => state.user.currentUser);
+    const admin = useSelector((state) => state.admin.currentAdmin);
+    useEffect(() => {
+        if(admin){
+            history.push('/admindashboard')
+        }
+        if(user){
+            history.push('/')
+        }
+    });
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
-        setLoading(true);
-
-        form.current.validateAll();
-
-        // if (checkBtn.current.context._errors.length === 0) {
-        //     dispatch(login(username, password))
-        //         .then(() => {
-        //             navigate("/");
-        //             window.location.reload();
-        //         })
-        //         .catch(() => {
-        //             setLoading(false);
-        //         });
-        // } else {
-        //     setLoading(false);
-        // }
+        login(dispatch, { email, password });
     };
-
-    // if (isLoggedIn) {
-    //     return <Navigate to="/" />;
-    // }
-
+    const login = async (dispatch, user) => {
+        dispatch(loginStart());
+        try {
+            const result = await axios.post(`v1/client/login`, {
+                email,
+                password,
+            });
+            dispatch(loginSuccess(result.data));
+            localStorage.setItem('currentUser',JSON.stringify(result.data))
+            history.push('/')
+        } catch (err) {
+            dispatch(loginFailure());
+        }
+    };
     return (
-        <div className="login-div">
-                <div className="logo-div">
-               <h4>User Login</h4>
-                </div>
-                <Form onSubmit={handleLogin} ref={form}>
-                        <label htmlFor="username">Username</label>
-                        <Input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            value={username}
-                            onChange={onChangeUsername}
-                            validations={[required]}
-                        />
+        <Grid>
+            <Paper elevation={10} className={classes.paperStyle}>
+                <Grid align='center'>
+                    <Avatar className={classes.avatarStyle}><LoginIcon /></Avatar>
+                    <h2>Sign In (Client)</h2>
+                </Grid>
+                <TextField label='Email' placeholder='Enter email' type='email' onChange={(e) => setEmail(e.target.value)} fullWidth required />
+                <TextField label='Password' placeholder='Enter password' type='password' onChange={(e) => setPassword(e.target.value)} fullWidth required />
+                <Button  color='primary' onClick={handleSubmit} disabled={isFetching} variant="contained" className={classes.btnstyle} fullWidth>Sign in</Button>
+                {error && <Box component="span" className={classes.spanstyle}>Email or Password is Incorrect!</Box>}
+                <Typography > Do you have an account?
+                    <Link to="/register">
+                        Register
+                    </Link>
+                </Typography>
+            </Paper>
+        </Grid>
+    )
+}
 
-                        <label htmlFor="password">Password</label>
-                        <Input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            value={password}
-                            onChange={onChangePassword}
-                            validations={[required]}
-                        />
-
-                        <button className="btn btn-primary btn-block" disabled={loading}>
-                            {loading && (
-                                <span className="spinner-border spinner-border-sm"></span>
-                            )}
-                            <span>Login</span>
-                        </button>
-
-                    {message && (
-                        <div className="form-group">
-                            <div className="alert alert-danger" role="alert">
-                                {message}
-                            </div>
-                        </div>
-                    )}
-                    {/* <CheckButton style={{ display: "none" }} ref={checkBtn} /> */}
-                </Form>
-            </div>
-    );
-};
-
-export default Login;
+export default Login
