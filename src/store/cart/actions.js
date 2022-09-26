@@ -1,4 +1,4 @@
-import { ADD_TO_CART, SHOW_HIDE_CART, REMOVE_ITEM, INCREMENT, DECREMENT, CLEAR, RATING,USER_REGISTER_REQUEST,USER_REGISTER_SUCCESS,USER_REGISTER_FAILED } from '../Types';
+import { ADD_TO_CART, SHOW_HIDE_CART, REMOVE_ITEM, INCREMENT, DECREMENT, CLEAR, RATING,} from '../Types';
 import axios from 'axios';
 
 export const registerUser = (user)=>async dispatch =>{
@@ -6,10 +6,21 @@ export const registerUser = (user)=>async dispatch =>{
   try{
     const response = await axios.post('/api/users/register', user)
     console.log(response, "respones")
-    dispatch({type:"USER_REGISTER_SUCCESS"})
+    dispatch({type:"USER_REGISTER_SUCCESS", payload:response.data})
   }catch(error){
     dispatch({type:"USER_REGISTER_FAILED",payload:error} )
   }
+};
+
+export const loginUser = (user)=>async dispatch =>{
+  dispatch({type:"USER_LOGIN_REQUEST"});
+try{
+  const response = await axios.post('/api/users/login', user)
+  console.log(response, "respones")
+  dispatch({type:"USER_LOGIN_SUCCESS"})
+}catch(error){
+  dispatch({type:"USER_LOGIN_FAILED",payload:error} )
+}
 };
 export const addToCart = id => {
   return (dispatch) => dispatch({ type: ADD_TO_CART, payload: id });
